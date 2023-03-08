@@ -105,9 +105,28 @@ form.button_to {
   }
 }
 
+
 .page-header {
   margin: 3em 0;
 }
 .text-danger {
   color: #f38792 !important;
 }
+.login-link,
+.signup-link,
+.logout-link {
+  color: #f4eff0;
+}
+.navbar-nav > li:not(:last-child) {
+  margin-right: 1rem;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
