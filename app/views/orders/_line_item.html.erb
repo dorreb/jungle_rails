@@ -1,6 +1,6 @@
 <tr>
   <td>
-     <%= image_tag product.image.thumb.url , alt: product.name %>
+    <%= image_tag product.image.thumb.url, alt: product.name %>
   </td>
   <td>
     <h4><%= product.name %></h4>
@@ -8,9 +8,9 @@
     <p><%= product.description %></p>
   </td>
   <td>
-    <p><%=quantity%></p>
+    <p><%= quantity %></p>
   </td>
   <td>
-    <p><%=humanized_money_with_symbol total_line_price / 100.0%></p>
+    <p><%= humanized_money_with_symbol total_line_price / 100.0 %></p>
   </td>
 </tr>
