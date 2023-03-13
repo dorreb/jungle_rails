@@ -80,6 +80,52 @@ RSpec.describe User, type: :model do
     end
   end
 
+  # ------------------------------------------------------------------------------
+
   describe ".authenticate_with_credentials" do
+    it "should return nil if the user cannot be authenticated" do
+      user1 =
+        User.create(
+          first_name: "Ashley",
+          last_name: "Ure",
+          email: "ashley@hotmail.com",
+          password: "password",
+          password_confirmation: "password",
+        )
+      expect(
+        User.authenticate_with_credentials("ashley@hotmail.com", "wrong"),
+      ).to be_nil
+    end
+
+    it "should return the user if the user can be authenticated" do
+      user1 =
+        User.create(
+          first_name: "Ashley",
+          last_name: "Ure",
+          email: "ashley@hotmail.com",
+          password: "password",
+          password_confirmation: "password",
+        )
+      expect(
+        User.authenticate_with_credentials("ashley@hotmail.com", "password"),
+      ).to be_truthy.and have_attributes(email: "ashley@hotmail.com")
+    end
+
+    it "save the users email after removing whitespace and lowering the case" do
+      user1 =
+        User.create(
+          first_name: "Ashley",
+          last_name: "Ure",
+          email: "ashley@hotmail.com",
+          password: "password",
+          password_confirmation: "password",
+        )
+      expect(
+        User.authenticate_with_credentials(
+          "  ASHLEY@hotmail.com  ",
+          "password",
+        ),
+      ).to be_truthy.and have_attributes(email: "ashley@hotmail.com")
+    end
   end
 end
